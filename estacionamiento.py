@@ -6,10 +6,10 @@ class vehiculo(osv.osv):
   _name = "estacionamiento.vehiculo"
 
   def _get_monto(self, cr, uid, ids, field, arg, context=None):
-      seleccionados = self.pool.get('estacionamiento.vehiculo').browse(cr,uid,ids,context=context)
+      ve = self.pool.get('estacionamiento.vehiculo').browse(cr,uid,ids,context=context)
       monto = {}
       format = '%Y-%m-%d %H:%M:%S'
-      for each in seleccionados:
+      for each in ve:
           try:
               entrada = datetime.strptime(each.fecha_entrada, format)
               salida = datetime.strptime(each.fecha_salida, format)
