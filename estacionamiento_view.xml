@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+  <!--Vistas para el modelo estacionamiento.vehiculo-->
+  <record model="ir.ui.view" id="vehiculo_view_tree">
+    <field name="name">vehiculo.tree</field>
+    <field name="model">estacionamiento.vehiculo</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree string="Vehiculo tree">
+       <field name="matricula" string="Matricula"/>
+       <field name="marca" string="Marca"/>
+       <field name="monto_pagar" string="Marca"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="vehiculo_view_form">
+      <field name="name">vehiculo.form</field>
+      <field name="model">estacionamiento.vehiculo</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Vehiculo Form">
+            <field name="matricula" string="Matricula"/>
+            <field name="tipo"/>
+            <field name="marca" string="Marca"/>
+            <field name="excento_pago"/>
+            <field name="tipo_uso"/>
+            <group colspan="4" col="2">
+                <field name="fecha_entrada"/>
+                <field name="fecha_salida"/>
+            </group>
+            <notebook colspan="4">
+                <page string="Datos del Conductor">
+                    <field name="conductor"/>
+                </page>
+            </notebook>
+        </form>
+      </field>
+  </record>
+
+  <!--Vistas para el modelo estacionamiento.conductor-->
+  <record model="ir.ui.view" id="conductor_view_tree">
+    <field name="name">conductor.tree</field>
+    <field name="model">estacionamiento.conductor</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree string="Conductor tree">
+          <field name="cedula" string="Cedula"/>
+          <field name="nombre" string="Nombre del Conductor"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="conductor_view_form">
+      <field name="name">conductor.form</field>
+      <field name="model">estacionamiento.conductor</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Conductor Form">
+            <field name="cedula" string="Cedula"/>
+            <field name="nombre" string="Nombre del Conductor"/>
+        </form>
+      </field>
+  </record>
+
+  <!--Vistas para el modelo estacionamiento.uso-->
+  <record model="ir.ui.view" id="uso_view_tree">
+    <field name="name">uso.tree</field>
+    <field name="model">estacionamiento.uso</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree string="Conductor tree">
+          <field name="t_uso" string="Tipo de Uso"/>
+          <field name="tarifa" string="Tarifa por hora"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="uso_view_form">
+      <field name="name">uso.form</field>
+      <field name="model">estacionamiento.uso</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Conductor Form">
+            <field name="t_uso" string="Tipo de Uso"/>
+            <field name="tarifa" string="Tarifa por Hora"/>
+        </form>
+      </field>
+  </record>
+
+  <!--Acción listar Vehiculos-->
+  <record model="ir.actions.act_window" id="action_listar_vehiculo">
+    <field name="name">Vehiculos</field>
+    <field name="res_model">estacionamiento.vehiculo</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <!--Acción listar Conductores-->
+  <record model="ir.actions.act_window" id="action_listar_conductor">
+      <field name="name">Conductores</field>
+      <field name="res_model">estacionamiento.conductor</field>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+  <!--Acción listar tipos de uso-->
+  <record model="ir.actions.act_window" id="action_listar_tipo_uso">
+      <field name="name">Tipos de Uso</field>
+      <field name="res_model">estacionamiento.uso</field>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_estacionamiento" name="Estacionamiento" />
+  <menuitem id="menu_estacionamiento_vehiculo" name="Vehiculos" parent="menu_estacionamiento"/>
+  <menuitem id="menu_estacionamiento_vehiculo_l" name="Lista de Vehiculos" parent="menu_estacionamiento_vehiculo" action="action_listar_vehiculo"/>
+  <menuitem id="menu_estacionamiento_conductor" name="Conductores" parent="menu_estacionamiento"/>
+  <menuitem id="menu_estacionamiento_conductor_l" name="Lista de Conductores" parent="menu_estacionamiento_conductor" action="action_listar_conductor"/>
+  <menuitem id="menu_estacionamiento_tipo_uso" name="Tipos de Uso" parent="menu_estacionamiento"/>
+  <menuitem id="menu_estacionamiento_tipo_uso_l" name="Lista de tipos de uso" parent="menu_estacionamiento_tipo_uso" action="action_listar_tipo_uso"/>
+
+</data>
+</openerp>
