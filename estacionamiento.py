@@ -27,7 +27,7 @@ class vehiculo(osv.osv):
     "fecha_entrada" : fields.datetime('Fecha de Entrada'),
     "fecha_salida" : fields.datetime('Fecha de Salida'),
     "excento_pago" : fields.boolean("Excento de pago"),
-    "tipo_uso" : fields.many2one('estacionamiento.uso', "Tipo de uso"),
+    "tipo_uso" : fields.many2one('estacionamiento.tarifa', "Tipo de uso"),
     "conductor": fields.one2many("estacionamiento.conductor",
                                  "vehiculo_id", "Cedula del conductor", ondelete="cascade"),
     "monto_pagar": fields.function(_get_monto, method=True, type="float", string="Monto a Pagar"),
@@ -39,7 +39,7 @@ class vehiculo(osv.osv):
 vehiculo()
 
 class tipo_uso(osv.osv):
-  _name = "estacionamiento.uso"
+  _name = "estacionamiento.tarifa"
   _columns = {
     "t_uso" : fields.char("Tipo de Uso", size=100, required=True),
     "tarifa" : fields.float("Tarifa", digits=(3,2)),
