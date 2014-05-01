@@ -7,6 +7,7 @@
   "description": "Description text",
   "data": [
       "estacionamiento_view.xml",
+      #"taller_view.xml",
   ],
   "installable": True,
   "auto_install": False,

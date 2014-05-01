@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+  <!--Vistas para el modelo taller.vehiculo-->
+  <record model="ir.ui.view" id="taller_vehiculo_view_tree">
+    <field name="name">taller.vehiculo.tree</field>
+    <field name="model">taller.vehiculo</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree string="Vehiculos en Taller tree">
+       <field name="matricula" string="Matricula"/>
+       <field name="marca" string="Marca"/>
+       <field name="monto_pagar" string="Marca"/>
+      </tree>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="taller_vehiculo_view_form">
+      <field name="name">vehiculo2.form</field>
+      <field name="model">taller.vehiculo</field>
+      <field name="inherit_id" ref="vehiculo_view_form"/>
+      <field name="arch" type="xml">
+        <!--<field name="matricula" position="before">
+          <field name="color" />
+        </field>-->
+        <xpath expr="/form/field[@name='excento_pago']" position="after">
+          <field name="color" string="Color del vehiculo"/>
+        </xpath>
+      </field>
+  </record>
+
+  <!--Acción listar Vehiculos-->
+  <record model="ir.actions.act_window" id="action_listar_taller_vehiculo">
+    <field name="name">Vehiculos en Taller</field>
+    <field name="res_model">taller.vehiculo</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_taller" name="Taller" />
+  <menuitem id="menu_taller_vehiculos" name="Vehiculos en Taller" parent="menu_taller"/>
+  <menuitem id="menu_taller_vehiculos_l" name="Lista de Vehiculos en Taller" parent="menu_taller_vehiculos" action="action_listar_taller_vehiculo"/>
+
+</data>
+</openerp>
