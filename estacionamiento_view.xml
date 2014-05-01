@@ -25,8 +25,9 @@
             <field name="matricula" string="Matricula"/>
             <field name="tipo"/>
             <field name="marca" string="Marca"/>
-            <field name="excento_pago"/>
+            <field name="excento_pago" on_change="change_monto(excento_pago,monto_pagar)"/>
             <field name="t_tarifa"/>
+            <field name="monto_pagar"/>
             <group colspan="4" col="2">
                 <field name="fecha_entrada"/>
                 <field name="fecha_salida"/>

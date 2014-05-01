@@ -10,14 +10,27 @@ class vehiculo(osv.osv):
       monto = {}
       format = '%Y-%m-%d %H:%M:%S'
       for each in ve:
-          try:
-              entrada = datetime.strptime(each.fecha_entrada, format)
-              salida = datetime.strptime(each.fecha_salida, format)
-              tiempo =  (24 - ((entrada - salida).seconds/3600))
-              monto[each.id] = tiempo * each.t_tarifa.tarifa
-          except:
-              monto[each.id] = 0
+          monto[each.id] = 0
+          if not (each.excento_pago):
+              if (each.fecha_entrada and each.fecha_salida):
+                  entrada = datetime.strptime(each.fecha_entrada, format)
+                  salida = datetime.strptime(each.fecha_salida, format)
+                  tiempo =  (24 - ((entrada - salida).seconds/3600))
+                  monto[each.id] = tiempo * each.t_tarifa.tarifa
       return monto
+
+  def _check_length(self, cr, uid, ids, context=None):
+      record = self.browse(cr, uid, ids, context=context)
+      for data in record:
+        if (len(data.matricula) < 6) or (len(data.matricula) > 7):
+          return False
+      return True
+
+  def change_monto(self, cr, uid, ids, excento_pago, monto_pagar, context=None):
+      if (excento_pago):
+          return {"value":{"monto_pagar":0,}}
+      else:
+          return {"value":{"monto_pagar":monto_pagar,}}
 
   _columns = {
     "matricula" : fields.char("Matricula",size=10,required=True),
@@ -36,6 +49,8 @@ class vehiculo(osv.osv):
   _defaults = {
     "tipo" : "s",
   }
+
+  _constraints = [(_check_length, 'Error: Matricula', ['matricula'])]
 vehiculo()
 
 class tarifa(osv.osv):
