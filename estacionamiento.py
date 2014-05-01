@@ -14,7 +14,7 @@ class vehiculo(osv.osv):
               entrada = datetime.strptime(each.fecha_entrada, format)
               salida = datetime.strptime(each.fecha_salida, format)
               tiempo =  (24 - ((entrada - salida).seconds/3600))
-              monto[each.id] = tiempo * each.tipo_uso.tarifa
+              monto[each.id] = tiempo * each.t_tarifa.tarifa
           except:
               monto[each.id] = 0
       return monto
@@ -27,7 +27,7 @@ class vehiculo(osv.osv):
     "fecha_entrada" : fields.datetime('Fecha de Entrada'),
     "fecha_salida" : fields.datetime('Fecha de Salida'),
     "excento_pago" : fields.boolean("Excento de pago"),
-    "tipo_uso" : fields.many2one('estacionamiento.tarifa', "Tipo de uso"),
+    "t_tarifa" : fields.many2one('estacionamiento.tarifa', "Tipo de Tarifa"),
     "conductor": fields.one2many("estacionamiento.conductor",
                                  "vehiculo_id", "Cedula del conductor", ondelete="cascade"),
     "monto_pagar": fields.function(_get_monto, method=True, type="float", string="Monto a Pagar"),
@@ -38,13 +38,13 @@ class vehiculo(osv.osv):
   }
 vehiculo()
 
-class tipo_uso(osv.osv):
+class tarifa(osv.osv):
   _name = "estacionamiento.tarifa"
   _columns = {
-    "t_uso" : fields.char("Tipo de Uso", size=100, required=True),
+    "t_tarifa" : fields.char("Tipo de Tarifa", size=100, required=True),
     "tarifa" : fields.float("Tarifa", digits=(3,2)),
   }
-tipo_uso()
+tarifa()
 
 class conductor(osv.osv):
   _name = "estacionamiento.conductor"

@@ -26,7 +26,7 @@
             <field name="tipo"/>
             <field name="marca" string="Marca"/>
             <field name="excento_pago"/>
-            <field name="tipo_uso"/>
+            <field name="t_tarifa"/>
             <group colspan="4" col="2">
                 <field name="fecha_entrada"/>
                 <field name="fecha_salida"/>
@@ -65,26 +65,26 @@
       </field>
   </record>
 
-  <!--Vistas para el modelo estacionamiento.uso-->
-  <record model="ir.ui.view" id="uso_view_tree">
-    <field name="name">uso.tree</field>
-    <field name="model">estacionamiento.uso</field>
+  <!--Vistas para el modelo estacionamiento.tarifa-->
+  <record model="ir.ui.view" id="tarifa_view_tree">
+    <field name="name">tarifa.tree</field>
+    <field name="model">estacionamiento.tarifa</field>
     <field name="type">tree</field>
     <field name="arch" type="xml">
       <tree string="Conductor tree">
-          <field name="t_uso" string="Tipo de Uso"/>
+          <field name="t_tarifa" string="Tipo de Uso"/>
           <field name="tarifa" string="Tarifa por hora"/>
       </tree>
     </field>
   </record>
 
-  <record model="ir.ui.view" id="uso_view_form">
-      <field name="name">uso.form</field>
-      <field name="model">estacionamiento.uso</field>
+  <record model="ir.ui.view" id="tarifa_view_form">
+      <field name="name">tarifa.form</field>
+      <field name="model">estacionamiento.tarifa</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Conductor Form">
-            <field name="t_uso" string="Tipo de Uso"/>
+            <field name="t_tarifa" string="Tipo de Uso"/>
             <field name="tarifa" string="Tarifa por Hora"/>
         </form>
       </field>
@@ -104,10 +104,10 @@
       <field name="view_mode">tree,form</field>
   </record>
 
-  <!--Acción listar tipos de uso-->
-  <record model="ir.actions.act_window" id="action_listar_tipo_uso">
-      <field name="name">Tipos de Uso</field>
-      <field name="res_model">estacionamiento.uso</field>
+  <!--Acción listar tipos de tarifa-->
+  <record model="ir.actions.act_window" id="action_listar_tarifa">
+      <field name="name">Tipos de Tarifas</field>
+      <field name="res_model">estacionamiento.tarifa</field>
       <field name="view_mode">tree,form</field>
   </record>
 
@@ -116,8 +116,8 @@
   <menuitem id="menu_estacionamiento_vehiculo_l" name="Lista de Vehiculos" parent="menu_estacionamiento_vehiculo" action="action_listar_vehiculo"/>
   <menuitem id="menu_estacionamiento_conductor" name="Conductores" parent="menu_estacionamiento"/>
   <menuitem id="menu_estacionamiento_conductor_l" name="Lista de Conductores" parent="menu_estacionamiento_conductor" action="action_listar_conductor"/>
-  <menuitem id="menu_estacionamiento_tipo_uso" name="Tipos de Uso" parent="menu_estacionamiento"/>
-  <menuitem id="menu_estacionamiento_tipo_uso_l" name="Lista de tipos de uso" parent="menu_estacionamiento_tipo_uso" action="action_listar_tipo_uso"/>
+  <menuitem id="menu_estacionamiento_tarifa" name="Tipos de Tarifas" parent="menu_estacionamiento"/>
+  <menuitem id="menu_estacionamiento_tarifa_l" name="Lista de tipos de tarifa" parent="menu_estacionamiento_tarifa" action="action_listar_tarifa"/>
 
 </data>
 </openerp>
