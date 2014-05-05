@@ -50,7 +50,10 @@ class vehiculo(osv.osv):
     "tipo" : "s",
   }
 
-  _constraints = [(_check_length, 'Error: Matricula', ['matricula'])]
+  _constraints = [(_check_length, "Error: Matricula", ["matricula"])]
+
+  _sql_constraints = [("matricula_uniq", "unique(matricula)", 
+                       "La matricula debe ser unica")]
 vehiculo()
 
 class tarifa(osv.osv):
