@@ -7,6 +7,8 @@
   "description": "Description text",
   "data": [
       "estacionamiento_view.xml",
+      "grupos_permisos.xml",
+      "ir.model.access.csv",
       #"taller_view.xml",
   ],
   "installable": True,

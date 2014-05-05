@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="estacionamiento_admin" model="res.groups">
+      <field name="name">Estacionamiento / Admin</field>
+    </record>
+    <record id="estacionamiento_user" model="res.groups">
+      <field name="name">Estacionamiento / Usuario</field>
+    </record>
+  </data>
+</openerp>

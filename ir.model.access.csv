@@ -1,0 +1,8 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+ir_access_estacionamiento_admin,estacionamiento.vehiculo admin,model_estacionamiento_vehiculo,estacionamiento_admin,1,1,1,1
+ir_access_estacionamiento_tarifa_admin,estacionamiento.tarifa admin,model_estacionamiento_tarifa,estacionamiento_admin,1,1,1,1
+ir_access_estacionamiento_conductor_admin,estacionamiento.conductor admin,model_estacionamiento_conductor,estacionamiento_admin,1,1,1,1
+
+ir_access_estacionamiento_user,estacionamiento.vehiculouser,model_estacionamiento_vehiculo,estacionamiento_user,1,0,1,1
+ir_access_estacionamiento_tarifa_user,estacionamiento.tarifa user,model_estacionamiento_tarifa,estacionamiento_user,1,0,1,1
+ir_access_estacionamiento_conductor_user,estacionamiento.conductor user,model_estacionamiento_conductor,estacionamiento_user,1,0,1,1
