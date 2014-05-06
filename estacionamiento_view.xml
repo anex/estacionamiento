@@ -115,9 +115,9 @@
   <menuitem id="menu_estacionamiento" name="Estacionamiento" />
   <menuitem id="menu_estacionamiento_vehiculo" name="Vehiculos" parent="menu_estacionamiento"/>
   <menuitem id="menu_estacionamiento_vehiculo_l" name="Lista de Vehiculos" parent="menu_estacionamiento_vehiculo" action="action_listar_vehiculo"/>
-  <menuitem id="menu_estacionamiento_conductor" name="Conductores" parent="menu_estacionamiento"/>
+  <menuitem id="menu_estacionamiento_conductor" name="Conductores" parent="menu_estacionamiento" groups="estacionamiento_admin"/>
   <menuitem id="menu_estacionamiento_conductor_l" name="Lista de Conductores" parent="menu_estacionamiento_conductor" action="action_listar_conductor"/>
-  <menuitem id="menu_estacionamiento_tarifa" name="Tipos de Tarifas" parent="menu_estacionamiento"/>
+  <menuitem id="menu_estacionamiento_tarifa" name="Tipos de Tarifas" parent="menu_estacionamiento" groups="estacionamiento_admin"/>
   <menuitem id="menu_estacionamiento_tarifa_l" name="Lista de tipos de tarifa" parent="menu_estacionamiento_tarifa" action="action_listar_tarifa"/>
 
 </data>
