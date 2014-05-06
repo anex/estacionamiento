@@ -11,7 +11,7 @@
       <tree string="Vehiculo tree">
        <field name="matricula" string="Matricula"/>
        <field name="marca" string="Marca"/>
-       <field name="monto_pagar" string="Marca"/>
+       <field name="monto_pagar" string="Monto a Pagar"/>
       </tree>
     </field>
   </record>
