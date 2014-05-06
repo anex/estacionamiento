@@ -9,6 +9,7 @@
       "estacionamiento_view.xml",
       "grupos_permisos.xml",
       "ir.model.access.csv",
+      "reports.xml",
       #"taller_view.xml",
   ],
   "installable": True,

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <report header="False" auto="False" id="estacionamiento_vehiculo_report"
+        model="estacionamiento.vehiculo"
+        name="estacionamiento.vehiculo"
+        rml="estacionamiento/report/vehiculo.rml" string="Vehiculos" />
+    </data>
+</openerp>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<document filename="vehiculos.pdf">
+    <template title="Vehiculos"
+              author="Covetel R.S"
+              pageSize="(8.5in, 11in)"
+              leftMargin="3cm" 
+              rightMargin="2cm"
+              topMargin="2cm"
+              bottomMargin="2cm" 
+              firstPageTemplate="main">
+	 <pageTemplate id="main">
+        <pageGraphics>
+            <setFont name="DejaVu Sans" size="16"/>
+            <image x="2.5cm" y="22cm" width="100" height="60.0" >[[ company.logo or removeParentNode('image') ]]</image>
+            <stroke color="black"/>
+            <drawRightString x="6 cm" y="25.3cm">[[ company.name ]]</drawRightString>
+            <fill color="black"/>
+            <stroke color="black"/>
+       </pageGraphics>
+        <frame id="first" x1="1.3cm" y1="1.3cm" height="20cm" width="19.0cm"/>
+    </pageTemplate>
+      
+    </template>
+
+    <stylesheet>
+      <paraStyle name="textstyle1" fontName="Helvetica" fontSize="9" leading="10" />
+      <paraStyle name="companyName" fontName="DejaVu Sans" fontSize="16" alignment="center"/>
+      <paraStyle name="textContent" fontName="Helvetica" fontSize="10"
+                 alignment="center" />
+      <paraStyle name="nameInfo" fontName="Helvetica-Bold" fontSize="25" alignment="center"/>
+      <blockTableStyle id="Table3">
+        <blockAlignment value="LEFT"/>
+        <blockValign value="TOP"/>
+        <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+        <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+        <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+        <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
+        <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+        <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+        <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,0" stop="2,-1"/>
+        <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
+        <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+        <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,0" stop="3,-1"/>
+        <lineStyle kind="LINEAFTER" colorName="#000000" start="3,0" stop="3,-1"/>
+        <lineStyle kind="LINEABOVE" colorName="#000000" start="3,0" stop="3,0"/>
+        <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+        <lineStyle kind="LINEBEFORE" colorName="#000000" start="4,0" stop="4,-1"/>
+        <lineStyle kind="LINEAFTER" colorName="#000000" start="4,0" stop="4,-1"/>
+        <lineStyle kind="LINEABOVE" colorName="#000000" start="4,0" stop="4,0"/>
+        <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
+      </blockTableStyle>
+    </stylesheet>
+
+    <story>
+      <para style="companyName">Información de Pago</para>
+      <spacer length="15" width="20"/>
+      <blockTable colWidths="100.0,100.0,100.0,100.0,100.0" style="Table3">
+        <tr>
+          <td>
+              <para style="textContent">Fecha de entrada</para>
+          </td>
+          <td>
+              <para style="textContent">Fecha de Salida</para>
+          </td>
+          <td>
+              <para style="textContent">Matricula</para>
+          </td>
+          <td>
+              <para style="textContent">Conductor</para>
+          </td>
+          <td>
+              <para style="textContent">Monto a pagar</para>
+          </td>
+        </tr>
+      </blockTable>
+      <para>[[ repeatIn(objects, 'vehiculo') ]]</para>
+      <section>
+        <blockTable colWidths="100.0,100.0,100.0,100.0,100.0" style="Table3">
+          <tr>
+            <td>
+                <para style="textContent">[[ vehiculo.fecha_entrada ]]</para>
+            </td>
+            <td>
+                <para style="textContent">[[ vehiculo.fecha_salida ]]</para>
+            </td>
+            <td>
+                <para style="textContent">[[ vehiculo.matricula ]]</para>
+            </td>
+            <td>
+                <para style="textContent">[[ repeatIn(vehiculo.conductor, 'conductor') ]]</para>
+                <para style="textContent">[[ conductor.cedula ]]</para>
+            </td>
+            <td>
+                <!--<para style="textContent">[[ round( 2 * 2, 2) ]]</para>-->
+                <!--<para style="textContent">[[ vehiculo.t_tarifa.tarifa ]]</para>-->
+                <para style="textContent">[[ (24 - ((datetime.strptime(vehiculo.fecha_entrada, '%Y-%m-%d %H:%M:%S') - datetime.strptime(vehiculo.fecha_salida, '%Y-%m-%d %H:%M:%S')).seconds/3600)) * vehiculo.t_tarifa.tarifa ]]</para>
+            </td>
+          </tr>
+        </blockTable>
+    </section>
+  </story>
+</document>
