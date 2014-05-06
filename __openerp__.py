@@ -6,8 +6,8 @@
   "category": "Category",
   "description": "Description text",
   "data": [
-      "estacionamiento_view.xml",
       "grupos_permisos.xml",
+      "estacionamiento_view.xml",
       "ir.model.access.csv",
       "reports.xml",
       #"taller_view.xml",
