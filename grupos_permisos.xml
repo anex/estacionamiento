@@ -7,42 +7,14 @@
     <record id="estacionamiento_user" model="res.groups">
       <field name="name">Estacionamiento / Usuario</field>
     </record>
-
-    <record id="ir_rule_estacionamiento_admin" model="ir.rule">
-      <field name="model_id" ref="model_estacionamiento_vehiculo"/>
-      <field name="name">CRUD Vehiculo</field>
-      <field eval="[(6,0,[ref('estacionamiento_admin')])]" name="groups"/>
-      <field eval="1" name="active"/>
-      <field eval="1" name="perm_unlink"/>
-      <field eval="1" name="perm_write"/>
-      <field eval="1" name="perm_read"/>
-      <field eval="1" name="perm_create"/>
-    </record>
-    <record id="ir_rule_estacionamiento_tarifa_admin" model="ir.rule">
-      <field name="model_id" ref="model_estacionamiento_tarifa"/>
-      <field name="name">CRUD Tarifa</field>
-      <field eval="[(6,0,[ref('estacionamiento_admin')])]" name="groups"/>
-      <field eval="1" name="active"/>
-      <field eval="1" name="perm_unlink"/>
-      <field eval="1" name="perm_write"/>
-      <field eval="1" name="perm_read"/>
-      <field eval="1" name="perm_create"/>
-    </record>
-    <record id="ir_rule_estacionamiento_conductor_admin" model="ir.rule">
-      <field name="model_id" ref="model_estacionamiento_conductor"/>
-      <field name="name">CRUD Conductor</field>
-      <field eval="[(6,0,[ref('estacionamiento_admin')])]" name="groups"/>
-      <field eval="1" name="active"/>
-      <field eval="1" name="perm_unlink"/>
-      <field eval="1" name="perm_write"/>
-      <field eval="1" name="perm_read"/>
-      <field eval="1" name="perm_create"/>
+    <record id="estacionamiento_lectura" model="res.groups">
+      <field name="name">Estacionamiento / Lectura</field>
     </record>
 
-    <record id="ir_rule_estacionamiento_user" model="ir.rule">
+    <record id="ir_rule_estacionamiento_lectura" model="ir.rule">
       <field name="model_id" ref="model_estacionamiento_vehiculo"/>
       <field name="name">CRUD Vehiculo</field>
-      <field eval="[(6,0,[ref('estacionamiento_user')])]" name="groups"/>
+      <field eval="[(6,0,[ref('estacionamiento_lectura')])]" name="groups"/>
       <field eval="1" name="active"/>
       <field eval="0" name="global"/>
       <field eval="0" name="perm_unlink"/>
@@ -51,10 +23,10 @@
       <field eval="0" name="perm_create"/>
       <field name="domain_force">[('excento_pago','=',True)]</field>
     </record>
-    <record id="ir_rule_estacionamiento_tarifa_user" model="ir.rule">
+    <record id="ir_rule_estacionamiento_tarifa_lectura" model="ir.rule">
       <field name="model_id" ref="model_estacionamiento_tarifa"/>
       <field name="name">CRUD Tarifa</field>
-      <field eval="[(6,0,[ref('estacionamiento_user')])]" name="groups"/>
+      <field eval="[(6,0,[ref('estacionamiento_lectura')])]" name="groups"/>
       <field eval="1" name="active"/>
       <field eval="0" name="global"/>
       <field eval="0" name="perm_unlink"/>
@@ -62,10 +34,10 @@
       <field eval="1" name="perm_read"/>
       <field eval="0" name="perm_create"/>
     </record>
-    <record id="ir_rule_estacionamiento_conductor_user" model="ir.rule">
+    <record id="ir_rule_estacionamiento_conductor_lectura" model="ir.rule">
       <field name="model_id" ref="model_estacionamiento_conductor"/>
       <field name="name">CRUD Conductor</field>
-      <field eval="[(6,0,[ref('estacionamiento_user')])]" name="groups"/>
+      <field eval="[(6,0,[ref('estacionamiento_lectura')])]" name="groups"/>
       <field eval="1" name="active"/>
       <field eval="0" name="global"/>
       <field eval="0" name="perm_unlink"/>
