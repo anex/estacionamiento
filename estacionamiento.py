@@ -15,7 +15,12 @@ class vehiculo(osv.osv):
               if (each.fecha_entrada and each.fecha_salida):
                   entrada = datetime.strptime(each.fecha_entrada, format)
                   salida = datetime.strptime(each.fecha_salida, format)
-                  tiempo =  (24 - ((entrada - salida).seconds/3600))
+                  days = (salida - entrada).days
+                  print days
+                  if days:
+                      tiempo =  ((24 * days)+(24 - ((entrada - salida).seconds/3600)))
+                  else:
+                      tiempo =  (24 - ((entrada - salida).seconds/3600))
                   monto[each.id] = tiempo * each.t_tarifa.tarifa
       return monto
 
