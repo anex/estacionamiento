@@ -34,13 +34,13 @@ class vehiculo(osv.osv):
 
   _columns = {
     "matricula" : fields.char("Matricula",size=10,required=True),
-    "marca" : fields.char("Marca",size=256,required=True),
+    "marca" : fields.char("Marca",size=256),
     "tipo" : fields.selection([("s", "sedan"), ("ca", "camioneta"), ("co", "camion"),
                               ], "Tipo de Vehiculo"),
     "fecha_entrada" : fields.datetime('Fecha de Entrada'),
     "fecha_salida" : fields.datetime('Fecha de Salida'),
     "excento_pago" : fields.boolean("Excento de pago"),
-    "t_tarifa" : fields.many2one('estacionamiento.tarifa', "Tipo de Tarifa"),
+    "t_tarifa" : fields.many2one('estacionamiento.tarifa', "Tipo de Tarifa", required=True),
     "conductor": fields.one2many("estacionamiento.conductor",
                                  "vehiculo_id", "Cedula del conductor", ondelete="cascade"),
     "monto_pagar": fields.function(_get_monto, method=True, type="float", string="Monto a Pagar"),
@@ -52,7 +52,7 @@ class vehiculo(osv.osv):
 
   _constraints = [(_check_length, "Error: Matricula", ["matricula"])]
 
-  _sql_constraints = [("matricula_uniq", "unique(matricula)", 
+  _sql_constraints = [("matricula_uniq", "unique(matricula)",
                        "La matricula debe ser unica")]
 vehiculo()
 
