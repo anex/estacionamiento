@@ -10,6 +10,7 @@
       "estacionamiento_view.xml",
       "ir.model.access.csv",
       "reports.xml",
+      "workflow.xml"
       #"taller_view.xml",
   ],
   "installable": True,

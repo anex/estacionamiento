@@ -32,6 +32,20 @@ class vehiculo(osv.osv):
       else:
           return {"value":{"monto_pagar":monto_pagar,}}
 
+  # Metodos del flujo trabajo
+  def estacionamiento_entrada(self, cr, uid, ids):
+    self.write(cr, uid, ids, { 'state' : 'entrada' })
+    return True
+
+  def estacionamiento_salida(self, cr, uid, ids):
+    self.write(cr, uid, ids, { 'state' : 'salida' })
+    return True
+
+  def estacionamiento_cobrar(self, cr, uid, ids):
+    self.write(cr, uid, ids, { 'state' : 'cobrar' })
+    return True
+
+
   _columns = {
     "matricula" : fields.char("Matricula",size=10,required=True),
     "marca" : fields.char("Marca",size=256),
@@ -44,6 +58,12 @@ class vehiculo(osv.osv):
     "conductor": fields.one2many("estacionamiento.conductor",
                                  "vehiculo_id", "Cedula del conductor", ondelete="cascade"),
     "monto_pagar": fields.function(_get_monto, method=True, type="float", string="Monto a Pagar"),
+
+    # Atributo para el flujo de trabajo
+    "state": fields.selection([
+        ("entrada", "Entrada"),
+        ("salida", "Salida"),
+        ("cobrar", "Cobrar")], "Estado", readonly=True),
   }
 
   _defaults = {

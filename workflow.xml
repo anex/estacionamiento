@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- WORKFLOW -->
+        <record model="workflow" id="wkf_estacionamiento">
+            <field name="name">estacionamiento.wkf</field>
+            <field name="osv">estacionamiento.vehiculo</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!-- ACTIVIDADES -->
+        <record model="workflow.activity" id="act_entrada">
+            <field name="wkf_id" ref="wkf_estacionamiento" />
+            <field name="flow_start">True</field>
+            <field name="name">entrada</field>
+            <field name="kind">function</field>
+            <field name="action">estacionamiento_entrada()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_salida">
+            <field name="wkf_id" ref="wkf_estacionamiento" />
+            <field name="name">salida</field>
+            <field name="kind">function</field>
+            <field name="action">estacionamiento_salida()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_cobrar">
+            <field name="wkf_id" ref="wkf_estacionamiento" />
+            <field name="name">cobrar</field>
+            <field name="kind">function</field>
+            <field name="action">estacionamiento_cobrar()</field>
+            <field name="flow_stop">True</field>
+        </record>
+
+        <!-- TRANSICIONES -->
+        <record model="workflow.transition" id="t1">
+            <field name="act_from" ref="act_entrada" />
+            <field name="act_to" ref="act_salida" />
+            <field name="signal">estacionamiento_salida</field>
+        </record>
+
+        <record model="workflow.transition" id="t2">
+            <field name="act_from" ref="act_salida" />
+            <field name="act_to" ref="act_cobrar" />
+            <field name="signal">estacionamiento_cobrar</field>
+        </record>
+
+    </data>
+</openerp>

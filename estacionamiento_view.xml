@@ -22,15 +22,21 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Vehiculo Form">
+            <!-- BOTONES del flujo de trabajo -->
+            <group colspan="4" col="3">
+                <button name="estacionamiento_salida" string="Salida" states="entrada" />
+                <button name="estacionamiento_cobrar" string="Cobrar" states="salida" />
+            </group>
             <field name="matricula" string="Matricula"/>
             <field name="tipo"/>
             <field name="marca" string="Marca"/>
             <field name="excento_pago" on_change="change_monto(excento_pago,monto_pagar)"/>
             <field name="t_tarifa"/>
             <field name="monto_pagar"/>
+            <field name="state" />
             <group colspan="4" col="2">
-                <field name="fecha_entrada"/>
-                <field name="fecha_salida"/>
+                <field name="fecha_entrada" attrs="{'invisible':[('state', '=', 'cobrar')]}"/>
+                <field name="fecha_salida" states="salida"/>
             </group>
             <notebook colspan="4">
                 <page string="Datos del Conductor">
@@ -119,6 +125,5 @@
   <menuitem id="menu_estacionamiento_conductor_l" name="Lista de Conductores" parent="menu_estacionamiento_conductor" action="action_listar_conductor"/>
   <menuitem id="menu_estacionamiento_tarifa" name="Tipos de Tarifas" parent="menu_estacionamiento" groups="estacionamiento_admin"/>
   <menuitem id="menu_estacionamiento_tarifa_l" name="Lista de tipos de tarifa" parent="menu_estacionamiento_tarifa" action="action_listar_tarifa"/>
-
 </data>
 </openerp>
