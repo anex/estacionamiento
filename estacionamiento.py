@@ -16,7 +16,6 @@ class vehiculo(osv.osv):
                   entrada = datetime.strptime(each.fecha_entrada, format)
                   salida = datetime.strptime(each.fecha_salida, format)
                   days = (salida - entrada).days
-                  print days
                   if days:
                       tiempo =  ((24 * days)+(24 - ((entrada - salida).seconds/3600)))
                   else:

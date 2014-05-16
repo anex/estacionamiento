@@ -118,6 +118,28 @@
       <field name="view_mode">tree,form</field>
   </record>
 
+  <!-- Wizard de ejemplo -->
+  <act_window id="set_salida"
+      name="Registrar Salida"
+      src_model="estacionamiento.vehiculo"
+      res_model="estacionamiento.vehiculo"
+      view_mode="form"
+      target="new"
+      view_type="form"
+      view_id="vehiculo_view_form"
+      multi="True"
+      key2="client_action_multi"/>
+
+  <record model="ir.actions.act_window" id="wizard_reg_salida">
+      <field name="name">Registrar Salida2</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">estacionamiento.vehiculo</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+  </record>
+  <!--Fin del Wizard de ejemplo -->
+
   <menuitem id="menu_estacionamiento" name="Estacionamiento" />
   <menuitem id="menu_estacionamiento_vehiculo" name="Vehiculos" parent="menu_estacionamiento"/>
   <menuitem id="menu_estacionamiento_vehiculo_l" name="Lista de Vehiculos" parent="menu_estacionamiento_vehiculo" action="action_listar_vehiculo"/>
@@ -125,5 +147,9 @@
   <menuitem id="menu_estacionamiento_conductor_l" name="Lista de Conductores" parent="menu_estacionamiento_conductor" action="action_listar_conductor"/>
   <menuitem id="menu_estacionamiento_tarifa" name="Tipos de Tarifas" parent="menu_estacionamiento" groups="estacionamiento_admin"/>
   <menuitem id="menu_estacionamiento_tarifa_l" name="Lista de tipos de tarifa" parent="menu_estacionamiento_tarifa" action="action_listar_tarifa"/>
+  <!-- Menu ejemplo wizard -->
+  <menuitem action="set_salida" id="menu_set_salida" parent="menu_estacionamiento_vehiculo" />
+  <!--<menuitem id="menu_estacionamiento_vehiculo_reg_salida" name="Registrar Salida2" parent="menu_estacionamiento_vehiculo" action="wizard_reg_salida"/>-->
+  <!-- Fin menu ejemplo wizard -->
 </data>
 </openerp>
