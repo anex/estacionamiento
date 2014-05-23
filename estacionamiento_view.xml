@@ -25,7 +25,7 @@
             <!-- BOTONES del flujo de trabajo -->
             <group colspan="4" col="3">
                 <button name="estacionamiento_salida" string="Salida" states="entrada" />
-                <button name="estacionamiento_cobrar" string="Cobrar" states="entrada" />
+                <button name="estacionamiento_cobrar" string="Cobrar" states="entrada,salida" />
             </group>
             <field name="matricula" string="Matricula"/>
             <field name="tipo"/>
