@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <!-- Process -->
+
+        <record id="process_process_estacionamiento" model="process.process">
+            <field eval="1" name="active"/>
+            <field name="model_id" ref="model_estacionamiento_vehiculo"/>
+            <field eval="&quot;&quot;&quot;estacionamiento.vehiculo&quot;&quot;&quot;" name="name"/>
+        </record>
+
+        <!-- Process Node/Activity -->
+
+        <record id="process_node_estacionamiento_entrada" model="process.node">
+            <field name="menu_id" ref="menu_estacionamiento"/>
+            <field name="model_id" ref="model_estacionamiento_vehiculo"/>
+            <field eval="&quot;&quot;&quot;state&quot;&quot;&quot;" name="kind"/>
+            <field eval="&quot;&quot;&quot;Entrada&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;Entrada vehiculo.&quot;&quot;&quot;" name="note"/>
+            <field name="process_id" ref="process_process_estacionamiento"/>
+            <field eval="&quot;&quot;&quot;object.state=='entrada'&quot;&quot;&quot;" name="model_states"/>
+            <field eval="1" name="flow_start"/>
+        </record>
+
+        <record id="process_node_estacionamiento_salida" model="process.node">
+            <field name="menu_id" ref="menu_estacionamiento"/>
+            <field name="model_id" ref="model_estacionamiento_vehiculo"/>
+            <field eval="&quot;&quot;&quot;state&quot;&quot;&quot;" name="kind"/>
+            <field eval="&quot;&quot;&quot;Salida&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;Salida vehiculo.&quot;&quot;&quot;" name="note"/>
+            <field name="process_id" ref="process_process_estacionamiento"/>
+            <field eval="&quot;&quot;&quot;object.state=='salida'&quot;&quot;&quot;" name="model_states"/>
+            <field eval="0" name="flow_start"/>
+        </record>
+
+        <record id="process_node_estacionamiento_cobrar" model="process.node">
+            <field name="menu_id" ref="menu_estacionamiento"/>
+            <field name="model_id" ref="model_estacionamiento_vehiculo"/>
+            <field eval="&quot;&quot;&quot;state&quot;&quot;&quot;" name="kind"/>
+            <field eval="&quot;&quot;&quot;Cobrar&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;Cobrar tarifa vehiculo.&quot;&quot;&quot;" name="note"/>
+            <field name="process_id" ref="process_process_estacionamiento"/>
+            <field eval="&quot;&quot;&quot;object.state=='cobrar'&quot;&quot;&quot;" name="model_states"/>
+            <field eval="1" name="flow_stop"/>
+        </record>
+
+        <!-- Process Transition -->
+
+        <record id="process_transition_entradatosalida" model="process.transition">
+            <field eval="[(6,0,[])]" name="transition_ids"/>
+            <field eval="&quot;&quot;&quot;Registrar Salida&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;El usuario registra la fecha de salida de vehiculo.&quot;&quot;&quot;" name="note"/>
+            <field model="process.node" name="target_node_id" ref="process_node_estacionamiento_salida"/>
+            <field model="process.node" name="source_node_id" ref="process_node_estacionamiento_entrada"/>
+        </record>
+
+        <record id="process_transition_salidatocobrar" model="process.transition">
+            <field eval="[(6,0,[])]" name="transition_ids"/>
+            <field eval="&quot;&quot;&quot;Cobrar tarifa&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;El usuario cobra tarifa de salida.&quot;&quot;&quot;" name="note"/>
+            <field model="process.node" name="target_node_id" ref="process_node_estacionamiento_cobrar"/>
+            <field model="process.node" name="source_node_id" ref="process_node_estacionamiento_salida"/>
+        </record>
+
+        <record id="process_transition_entradatocobrar" model="process.transition">
+            <field eval="[(6,0,[])]" name="transition_ids"/>
+            <field eval="&quot;&quot;&quot;Tarifa excenta de pago&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;El usuario marca excento de pago.&quot;&quot;&quot;" name="note"/>
+            <field model="process.node" name="target_node_id" ref="process_node_estacionamiento_cobrar"/>
+            <field model="process.node" name="source_node_id" ref="process_node_estacionamiento_entrada"/>
+        </record>
+
+        <!-- Process Action -->
+
+        <record id="process_transition_action_salida" model="process.transition.action">
+            <field eval="&quot;&quot;&quot;action_wait&quot;&quot;&quot;" name="action"/>
+            <field eval="&quot;&quot;&quot;object&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;Salida&quot;&quot;&quot;" name="name"/>
+            <field name="transition_id" ref="process_transition_entradatosalida"/>
+        </record>
+
+        <record id="process_transition_salidatocobrar" model="process.transition.action">
+            <field eval="&quot;&quot;&quot;Cobrar&quot;&quot;&quot;" name="action"/>
+            <field eval="&quot;&quot;&quot;object&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;Cobrar&quot;&quot;&quot;" name="name"/>
+            <field name="transition_id" ref="process_transition_salidatocobrar"/>
+        </record>
+ 
+    </data>
+</openerp>
