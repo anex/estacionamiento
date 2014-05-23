@@ -43,6 +43,14 @@
         <record model="workflow.transition" id="t2">
             <field name="act_from" ref="act_salida" />
             <field name="act_to" ref="act_cobrar" />
+            <field name="condition">excento_pago == True</field>
+            <field name="signal">estacionamiento_cobrar</field>
+        </record>
+
+        <record model="workflow.transition" id="t3">
+            <field name="act_from" ref="act_entrada" />
+            <field name="act_to" ref="act_cobrar" />
+            <field name="condition">excento_pago == True</field>
             <field name="signal">estacionamiento_cobrar</field>
         </record>
 
